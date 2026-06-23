@@ -1,0 +1,24 @@
+name: Manual Parameterized Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_choice:
+        description: 'Select software version'
+        required: true
+        type: choice
+        options:
+          - 'v1.0.0'
+          - 'v2.0.0'
+          - 'latest'
+jobs:
+  display-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Manual Inputs
+        run: |
+          echo "Message: ${{ inputs.log_message }}"
+          echo "Environment: ${{ inputs.target_env }}"
+          echo "Deploy Flag: ${{ inputs.deploy_build }}"
+          echo "Selected Version: ${{ inputs.version_choice }}"
+          echo "Retry Count: ${{ inputs.retry_count }}"
